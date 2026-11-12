@@ -1,21 +1,27 @@
+
 name: Atividade Primeiro Workflow
+
 on:
-    push:
+  push:
+
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        steps:
-            - run: echo "Iniciando o Workflow"
-            - name: Checkout
-            - name: Exibir nome do repositorio e usuario
-            - run:
-                echo "repositorio: ${{github.repository}}" 
-                echo "usuario:  ${{github.actor}}"
+  build:
+    runs-on: ubuntu-latest
 
-            - name: Teste 'existe READme.md'
-            - run: test -f README.md
+    steps:
+      - name: Iniciar o Workflow
+        run: echo "Iniciando o Workflow"
 
-            - name: Concluir validação
-            - run: echo "validação concluida"
+      - name: Checkout
+        uses: actions/checkout@v4
 
-          
+      - name: Exibir nome do repositorio e usuario
+        run: |
+          echo "repositorio: ${{ github.repository }}"
+          echo "usuario: ${{ github.actor }}"
+
+      - name: Teste 'existe README.md'
+        run: test -f README.md
+
+      - name: Concluir validação
+        run: echo "Validação concluída"
